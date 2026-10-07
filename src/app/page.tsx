@@ -1,12 +1,13 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Asterisk } from "lucide-react";
+import { motion, Variants } from "framer-motion";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 export default function LandingPage() {
   // Animation variants
-  const fadeScaleUp = {
+  const fadeScaleUp: Variants = {
     hidden: { opacity: 0, scale: 1.1 },
     visible: {
       opacity: 1,
@@ -15,7 +16,7 @@ export default function LandingPage() {
     }
   };
 
-  const slideUp = {
+  const slideUp: Variants = {
     hidden: { opacity: 0, y: 150 },
     visible: {
       opacity: 1,
@@ -24,7 +25,7 @@ export default function LandingPage() {
     }
   };
 
-  const staggerContainer = {
+  const staggerContainer: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -113,9 +114,10 @@ export default function LandingPage() {
           animate="visible"
           className="absolute top-[40%] right-10 text-right z-20"
         >
-          <p className="text-white/60 text-sm max-w-[200px] leading-relaxed">
-            A collection of exclusive homes designed for those who value privacy.
-          </p>
+          <div className="text-white/60 text-sm max-w-[250px] leading-relaxed ml-auto">
+            <p className="text-white font-medium tracking-widest text-xs mb-1">CIVIL WORKS</p>
+            <p>New construction, modifications and structural works with quality and compliance.</p>
+          </div>
         </motion.div>
 
         {/* Images Grid & Controls Bottom Area */}
