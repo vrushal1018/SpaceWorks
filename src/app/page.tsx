@@ -1,68 +1,178 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowLeft, ArrowRight, Asterisk } from "lucide-react";
+
+export default function LandingPage() {
+  // Animation variants
+  const fadeScaleUp = {
+    hidden: { opacity: 0, scale: 1.1 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }
+    }
+  };
+
+  const slideUp = {
+    hidden: { opacity: 0, y: 150 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1, ease: [0.25, 0.1, 0.25, 1] }
+    }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2, delayChildren: 0.5 }
+    }
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="relative min-h-screen bg-[#878787] text-white overflow-hidden font-sans">
+      {/* Subtle Background Glow / Ambient Lighting */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-amber-700/10 rounded-full blur-[100px] pointer-events-none" />
+
+      {/* Faint Vertical Grid Lines */}
+      <div className="absolute inset-0 flex justify-evenly pointer-events-none opacity-10">
+        <div className="w-[1px] h-full bg-white" />
+        <div className="w-[1px] h-full bg-white" />
+        <div className="w-[1px] h-full bg-white" />
+      </div>
+
+      {/* Navbar */}
+      <motion.nav
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.2 }}
+        className="relative z-20 flex items-center justify-between px-10 py-8 text-xs uppercase tracking-widest border-b border-white/5"
+      >
+        <div className="flex items-center">
+          <Image
+            src="/Ina Tech FM Logo .png"
+            alt="Ina Tech FM Logo"
+            width={180}
+            height={60}
+            className="object-contain h-12 w-auto"
+            priority
+          />
+        </div>
+
+        <a
+          href="https://inatechfmglobal.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-white/70 transition-colors"
+        >
+          An Ina TechFM Vertical
+        </a>
+      </motion.nav>
+
+      {/* Main Content */}
+      <main className="relative z-10 max-w-[1600px] mx-auto px-10 pt-20 h-[calc(100vh-100px)] flex flex-col justify-between">
+
+        {/* Top Text Elements */}
+        <div className="flex justify-between items-start w-full relative z-20">
+          <motion.div
+            variants={fadeScaleUp}
+            initial="hidden"
+            animate="visible"
+            className="text-white/60 text-sm max-w-[250px] leading-relaxed"
+          >
+            <p className="text-white font-medium tracking-widest text-xs mb-1">DESIGN-LED THINKING</p>
+            <p>Spaces shaped around business, people and purpose.</p>
+          </motion.div>
+        </div>
+
+        {/* Hero Logo */}
+        <motion.div
+          variants={fadeScaleUp}
+          initial="hidden"
+          animate="visible"
+          className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center pointer-events-none z-30"
+        >
+          <Image
+            src="/SpaceWorks Logo White 2.png"
+            alt="SpaceWorks Logo"
+            width={500}
+            height={200}
+            className="object-contain w-1/2 max-w-[400px]"
+            priority
+          />
+        </motion.div>
+
+        {/* Right Side Text */}
+        <motion.div
+          variants={fadeScaleUp}
+          initial="hidden"
+          animate="visible"
+          className="absolute top-[40%] right-10 text-right z-20"
+        >
+          <p className="text-white/60 text-sm max-w-[200px] leading-relaxed">
+            A collection of exclusive homes designed for those who value privacy.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+        </motion.div>
+
+        {/* Images Grid & Controls Bottom Area */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="relative grid grid-cols-12 gap-6 h-[45vh] items-end pb-10"
+        >
+          {/* Bottom Left Small Image */}
+          <motion.div variants={slideUp} className="col-span-3 h-32 relative group overflow-hidden rounded-sm">
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500 z-10" />
+            <img
+              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop"
+              alt="Living room detail"
+              className="object-cover w-full h-full scale-105 group-hover:scale-100 transition-transform duration-700"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+          </motion.div>
+
+          {/* Middle Left Taller Image (Coming Soon) */}
+          <motion.div variants={slideUp} className="col-span-3 h-48 relative group overflow-hidden rounded-sm border border-white/5 bg-white/5">
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-500 z-10 flex items-center justify-center">
+              <motion.span
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="text-white tracking-widest text-lg uppercase font-semibold drop-shadow-md"
+              >
+                Coming Soon
+              </motion.span>
+            </div>
+          </motion.div>
+
+          {/* Main Center Tall Image */}
+          <motion.div variants={slideUp} className="col-span-4 h-[60vh] relative -mt-32 group overflow-hidden rounded-sm">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
+            <img
+              src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop"
+              alt="Tall window living room"
+              className="object-cover w-full h-full scale-105 group-hover:scale-100 transition-transform duration-700"
+            />
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 text-center w-full">
+              <p className="text-sm tracking-[0.2em] uppercase font-medium">Auburn</p>
+              <p className="text-xs text-white/50 tracking-widest uppercase mt-1">Residence</p>
+            </div>
+          </motion.div>
+
+          {/* Bottom Right Controls */}
+          <motion.div variants={fadeScaleUp} className="col-span-2 flex justify-end gap-4 h-12 mb-4">
+            <button className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all">
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <button className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all">
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </motion.div>
+        </motion.div>
+
       </main>
     </div>
   );
