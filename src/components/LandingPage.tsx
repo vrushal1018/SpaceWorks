@@ -176,13 +176,16 @@ export default function LandingPage({ onNext }: LandingPageProps) {
       {/* Floating Action Buttons Container */}
       <div className="absolute bottom-4 md:bottom-10 left-0 w-full flex justify-center items-end z-50 pointer-events-none">
 
-        {/* Down Arrow to proceed (Bottom Center) */}
+        {/* Down Arrow and Text to proceed (Bottom Center) */}
         <div className="pointer-events-auto">
           <button
             onClick={onNext}
-            className="w-8 h-8 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center hover:bg-white hover:text-black transition-all animate-bounce group bg-black/20 backdrop-blur-sm"
+            className="flex items-center gap-3 md:gap-4 group hover:opacity-90 transition-opacity"
           >
-            <ArrowDown className="w-3 h-3 md:w-5 md:h-5 group-hover:translate-y-1 transition-transform" />
+            <span className="text-[10px] md:text-xs font-medium tracking-[0.2em] uppercase text-white/90">Contact Us</span>
+            <div className="w-8 h-8 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all animate-bounce bg-black/20 backdrop-blur-sm">
+              <ArrowDown className="w-3 h-3 md:w-5 md:h-5 transition-transform" />
+            </div>
           </button>
         </div>
       </div>
