@@ -144,14 +144,14 @@ export default function LandingPage({ onNext }: LandingPageProps) {
           variants={fadeScaleUp}
           initial="hidden"
           animate="visible"
-          className="absolute top-[20%] md:top-[15%] left-1/2 -translate-x-1/2 w-full flex items-center justify-center z-40 pointer-events-none"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center z-40 pointer-events-none"
         >
           <Image
             src="/SpaceWorks Logo White 2.png"
             alt="SpaceWorks Logo"
-            width={450}
-            height={188}
-            className="object-contain w-[65%] md:w-[450px]"
+            width={300}
+            height={125}
+            className="object-contain w-[50%] md:w-[300px]"
             priority
           />
         </motion.div>
