@@ -43,7 +43,7 @@ export default function LandingPage({ onNext }: LandingPageProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
       transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-      className="relative min-h-screen bg-[#878787] text-white overflow-hidden font-sans"
+      className="relative min-h-screen bg-black text-white overflow-hidden font-sans"
     >
       {/* Background Video */}
       <video
@@ -86,7 +86,11 @@ export default function LandingPage({ onNext }: LandingPageProps) {
             className="object-contain h-8 md:h-12 w-auto"
             priority
           />
-          <span className="absolute bottom-1 md:bottom-2 left-6 md:left-10 ml-1 text-[8px] md:text-[10px] text-white/50 tracking-[0.2em] uppercase">An Ina Tech FM Vertical</span>
+        </div>
+
+        {/* CENTER TEXT */}
+        <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center pointer-events-none mt-1">
+          <span className="text-xs md:text-sm text-white/90 font-medium tracking-[0.25em] uppercase whitespace-nowrap">An Ina Tech FM Vertical</span>
         </div>
 
         <div className="flex items-center">

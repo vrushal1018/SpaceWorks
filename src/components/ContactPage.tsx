@@ -40,7 +40,7 @@ export default function ContactPage({ onBack }: ContactPageProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-      className="relative min-h-screen bg-[#878787] text-white overflow-x-hidden overflow-y-auto font-sans"
+      className="relative min-h-screen bg-black text-white overflow-x-hidden overflow-y-auto font-sans"
     >
       {/* Background Image */}
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -84,7 +84,11 @@ export default function ContactPage({ onBack }: ContactPageProps) {
               priority
             />
           </button>
-          <span className="absolute bottom-1 md:bottom-2 left-6 md:left-10 ml-1 text-[8px] md:text-[10px] text-white/50 tracking-[0.2em] uppercase pointer-events-none">An Ina Tech FM Vertical</span>
+        </div>
+
+        {/* CENTER TEXT */}
+        <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center pointer-events-none mt-1">
+          <span className="text-xs md:text-sm text-white/90 font-medium tracking-[0.25em] uppercase whitespace-nowrap">An Ina Tech FM Vertical</span>
         </div>
 
         <div className="flex items-center">
