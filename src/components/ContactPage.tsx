@@ -42,6 +42,19 @@ export default function ContactPage({ onBack }: ContactPageProps) {
       transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
       className="relative min-h-screen bg-[#878787] text-white overflow-x-hidden overflow-y-auto font-sans"
     >
+      {/* Background Image */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <Image
+          src="/spaceworksmain.jpeg"
+          alt="SpaceWorks Background"
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/70" />
+      </div>
+
       {/* Subtle Background Glow / Ambient Lighting */}
       <div className="absolute top-1/4 left-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-amber-500/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-amber-700/10 rounded-full blur-[80px] md:blur-[100px] pointer-events-none" />
@@ -61,6 +74,20 @@ export default function ContactPage({ onBack }: ContactPageProps) {
         className="relative z-20 flex items-center justify-between px-6 md:px-10 py-6 md:py-8 text-[10px] md:text-xs uppercase tracking-widest border-b border-white/5"
       >
         <div className="flex items-center">
+          <button onClick={onBack} className="block hover:opacity-80 transition-opacity text-left">
+            <Image
+              src="/SpaceWorks Logo White 2.png"
+              alt="SpaceWorks Logo"
+              width={180}
+              height={60}
+              className="object-contain h-8 md:h-12 w-auto"
+              priority
+            />
+          </button>
+          <span className="absolute bottom-1 md:bottom-2 left-6 md:left-10 ml-1 text-[8px] md:text-[10px] text-white/50 tracking-[0.2em] uppercase pointer-events-none">An Ina Tech FM Vertical</span>
+        </div>
+
+        <div className="flex items-center">
           <a
             href="https://inatechfmglobal.com/"
             target="_blank"
@@ -76,17 +103,7 @@ export default function ContactPage({ onBack }: ContactPageProps) {
               priority
             />
           </a>
-          <span className="absolute bottom-1 md:bottom-2 left-6 md:left-10 ml-1 text-[8px] md:text-[10px] text-white/50 tracking-[0.2em] uppercase">An Ina Tech FM Vertical</span>
         </div>
-
-        <a
-          href="https://inatechfmglobal.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-white/70 transition-colors max-w-[120px] md:max-w-none text-right leading-relaxed"
-        >
-          An Ina TechFM Vertical
-        </a>
       </motion.nav>
 
       {/* Up Arrow to return */}

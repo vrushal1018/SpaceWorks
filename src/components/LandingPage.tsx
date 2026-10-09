@@ -78,6 +78,18 @@ export default function LandingPage({ onNext }: LandingPageProps) {
         className="relative z-50 flex items-center justify-between px-6 md:px-10 py-6 md:py-8 text-[10px] md:text-xs uppercase tracking-widest border-b border-white/5"
       >
         <div className="flex items-center">
+          <Image
+            src="/SpaceWorks Logo White 2.png"
+            alt="SpaceWorks Logo"
+            width={180}
+            height={60}
+            className="object-contain h-8 md:h-12 w-auto"
+            priority
+          />
+          <span className="absolute bottom-1 md:bottom-2 left-6 md:left-10 ml-1 text-[8px] md:text-[10px] text-white/50 tracking-[0.2em] uppercase">An Ina Tech FM Vertical</span>
+        </div>
+
+        <div className="flex items-center">
           <a
             href="https://inatechfmglobal.com/"
             target="_blank"
@@ -93,15 +105,7 @@ export default function LandingPage({ onNext }: LandingPageProps) {
               priority
             />
           </a>
-          <span className="absolute bottom-1 md:bottom-2 left-6 md:left-10 ml-1 text-[8px] md:text-[10px] text-white/50 tracking-[0.2em] uppercase">An Ina Tech FM Vertical</span>
         </div>
-
-        <button
-          onClick={onNext}
-          className="hover:text-white/70 transition-colors tracking-widest uppercase"
-        >
-          Contact Us
-        </button>
       </motion.nav>
 
       {/* Main Content Area - Fully Absolute Positioned */}
@@ -145,9 +149,9 @@ export default function LandingPage({ onNext }: LandingPageProps) {
           <Image
             src="/SpaceWorks Logo White 2.png"
             alt="SpaceWorks Logo"
-            width={600}
-            height={250}
-            className="object-contain w-[80%] md:w-[600px]"
+            width={450}
+            height={188}
+            className="object-contain w-[65%] md:w-[450px]"
             priority
           />
         </motion.div>
