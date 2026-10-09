@@ -45,6 +45,20 @@ export default function LandingPage({ onNext }: LandingPageProps) {
       transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
       className="relative min-h-screen bg-[#878787] text-white overflow-hidden font-sans"
     >
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source src="/spaceworksmainvideo.mp4" type="video/mp4" />
+      </video>
+
+      {/* Absolute Overlay to darken the video slightly for text readability */}
+      <div className="absolute inset-0 bg-black/30 z-0 pointer-events-none" />
+
       {/* Subtle Background Glow / Ambient Lighting */}
       <div className="absolute top-1/4 left-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-amber-500/10 rounded-full blur-[90px] md:blur-[120px] pointer-events-none z-0" />
       <div className="absolute bottom-0 right-1/4 w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-amber-700/10 rounded-full blur-[80px] md:blur-[100px] pointer-events-none z-0" />
@@ -138,53 +152,7 @@ export default function LandingPage({ onNext }: LandingPageProps) {
           />
         </motion.div>
 
-        {/* BOTTOM IMAGES GRID (Anchored to bottom) */}
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-          className="absolute bottom-16 md:bottom-0 left-0 w-full px-4 md:px-0 grid grid-cols-4 md:grid-cols-12 items-end z-20 pointer-events-auto"
-        >
-          {/* Bottom Left Small Image */}
-          <motion.div variants={slideUp} className="col-span-1 md:col-span-3 h-[10vh] md:h-[20vh] relative group overflow-hidden rounded-sm md:rounded-none">
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500 z-10" />
-            <img
-              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop"
-              alt="Living room detail"
-              className="object-cover w-full h-full scale-105 group-hover:scale-100 transition-transform duration-700"
-            />
-          </motion.div>
 
-          {/* Middle Left Taller Image (Coming Soon) */}
-          <motion.div variants={slideUp} className="col-span-1 md:col-span-3 h-[18vh] md:h-[35vh] relative group overflow-hidden rounded-sm md:rounded-none bg-[#5A5957] border-l border-r border-white/10 md:border-none">
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500 z-10 flex items-center justify-center">
-              <motion.span
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="text-white tracking-widest text-[8px] md:text-sm uppercase font-semibold drop-shadow-md text-center px-2"
-              >
-                Website Under Development
-              </motion.span>
-            </div>
-          </motion.div>
-
-          {/* Main Center Tall Image */}
-          <motion.div variants={slideUp} className="col-span-2 md:col-span-5 h-[35vh] md:h-[65vh] relative group overflow-hidden rounded-sm md:rounded-none bg-black">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
-            <img
-              src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop"
-              alt="Tall window living room"
-              className="object-cover w-full h-full scale-105 group-hover:scale-100 transition-transform duration-700 opacity-90"
-            />
-            <div className="absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 z-20 text-center w-full">
-              <p className="text-[10px] md:text-sm tracking-[0.2em] uppercase font-semibold">Auburn</p>
-              <p className="text-[8px] md:text-xs text-white/50 tracking-widest uppercase mt-1">Residence</p>
-            </div>
-          </motion.div>
-
-          {/* Empty space in grid to push the image to the left, mimicking the reference */}
-          <div className="hidden md:block md:col-span-1"></div>
-        </motion.div>
 
       </main>
 
