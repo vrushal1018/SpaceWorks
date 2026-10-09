@@ -1,12 +1,50 @@
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, Mail, Phone, MapPin, ArrowUp } from "lucide-react";
+import { useState } from "react";
 
 interface ContactPageProps {
   onBack: () => void;
 }
 
 export default function ContactPage({ onBack }: ContactPageProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const subject = formData.get("subject") as string;
+    const message = formData.get("message") as string;
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        (e.target as HTMLFormElement).reset();
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      console.error("Failed to submit form:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   // Same Animation variants for consistency
   const fadeScaleUp: Variants = {
     hidden: { opacity: 0, scale: 1.1 },
@@ -88,7 +126,7 @@ export default function ContactPage({ onBack }: ContactPageProps) {
 
         {/* CENTER TEXT */}
         <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center pointer-events-none mt-1">
-          <span className="text-xs md:text-sm text-white/90 font-medium tracking-[0.25em] uppercase whitespace-nowrap">An Ina Tech FM Vertical</span>
+          <span className="text-xs md:text-sm text-white/90 font-medium tracking-[0.25em] normal-case whitespace-nowrap">An Ina TechFM Vertical</span>
         </div>
 
         <div className="flex items-center">
@@ -151,8 +189,8 @@ export default function ContactPage({ onBack }: ContactPageProps) {
                 <div>
                   <p className="text-white font-medium tracking-widest text-[10px] md:text-xs mb-1 md:mb-2">HEADQUARTERS</p>
                   <p className="text-white/60 text-xs md:text-sm leading-relaxed">
-                    123 Innovation Drive, Suite 400<br />
-                    Tech District, NY 10001
+                    1st Floor, MBC Park, Kasarvadavli, Sainath Nagar,<br />
+                    Near Big Mall, Thane (W) – 400607, Maharashtra
                   </p>
                 </div>
               </motion.div>
@@ -165,7 +203,7 @@ export default function ContactPage({ onBack }: ContactPageProps) {
                 <div>
                   <p className="text-white font-medium tracking-widest text-[10px] md:text-xs mb-1 md:mb-2">EMAIL US</p>
                   <a href="mailto:hello@spaceworks.com" className="text-white/60 text-xs md:text-sm hover:text-white transition-colors duration-300">
-                    hello@spaceworks.com
+                    evolve@spaceworks.com
                   </a>
                 </div>
               </motion.div>
@@ -178,7 +216,7 @@ export default function ContactPage({ onBack }: ContactPageProps) {
                 <div>
                   <p className="text-white font-medium tracking-widest text-[10px] md:text-xs mb-1 md:mb-2">CALL US</p>
                   <a href="tel:+1234567890" className="text-white/60 text-xs md:text-sm hover:text-white transition-colors duration-300">
-                    +1 (234) 567-890
+                    +91 9156802555
                   </a>
                 </div>
               </motion.div>
@@ -195,13 +233,14 @@ export default function ContactPage({ onBack }: ContactPageProps) {
             {/* Form Hover Gradient effect inside box */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-            <form className="relative z-10 flex flex-col gap-8 md:gap-10" onSubmit={(e) => e.preventDefault()}>
+            <form className="relative z-10 flex flex-col gap-8 md:gap-10" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                 {/* Name Input */}
                 <div className="relative">
                   <input
                     type="text"
                     id="name"
+                    name="name"
                     placeholder="YOUR NAME"
                     className="w-full bg-transparent border-b border-white/20 py-2 md:py-3 text-xs md:text-sm tracking-widest placeholder:text-white/30 text-white focus:outline-none focus:border-white transition-colors peer"
                     required
@@ -213,6 +252,7 @@ export default function ContactPage({ onBack }: ContactPageProps) {
                   <input
                     type="email"
                     id="email"
+                    name="email"
                     placeholder="EMAIL ADDRESS"
                     className="w-full bg-transparent border-b border-white/20 py-2 md:py-3 text-xs md:text-sm tracking-widest placeholder:text-white/30 text-white focus:outline-none focus:border-white transition-colors peer"
                     required
@@ -225,6 +265,7 @@ export default function ContactPage({ onBack }: ContactPageProps) {
                 <input
                   type="text"
                   id="subject"
+                  name="subject"
                   placeholder="SUBJECT (E.G. CIVIL WORKS)"
                   className="w-full bg-transparent border-b border-white/20 py-2 md:py-3 text-xs md:text-sm tracking-widest placeholder:text-white/30 text-white focus:outline-none focus:border-white transition-colors peer"
                 />
@@ -234,6 +275,7 @@ export default function ContactPage({ onBack }: ContactPageProps) {
               <div className="relative">
                 <textarea
                   id="message"
+                  name="message"
                   placeholder="TELL US ABOUT YOUR PROJECT..."
                   rows={4}
                   className="w-full bg-transparent border-b border-white/20 py-2 md:py-3 text-xs md:text-sm tracking-widest placeholder:text-white/30 text-white focus:outline-none focus:border-white transition-colors resize-none peer"
@@ -242,12 +284,21 @@ export default function ContactPage({ onBack }: ContactPageProps) {
               </div>
 
               {/* Submit Button */}
-              <div className="pt-2 md:pt-4 flex justify-start md:justify-end">
+              <div className="pt-2 md:pt-4 flex flex-col md:flex-row items-center justify-between md:justify-end gap-4">
+                {submitStatus === "success" && (
+                  <span className="text-green-400 text-xs tracking-widest uppercase text-center md:text-left">Message sent successfully!</span>
+                )}
+                {submitStatus === "error" && (
+                  <span className="text-red-400 text-xs tracking-widest uppercase text-center md:text-left">Failed to send. Please try again.</span>
+                )}
                 <button
                   type="submit"
-                  className="group flex items-center justify-center md:justify-start gap-4 px-6 md:px-8 py-3 md:py-4 rounded-full border border-white/20 hover:bg-white hover:text-black transition-all duration-500 w-full md:w-fit"
+                  disabled={isSubmitting}
+                  className="group flex items-center justify-center md:justify-start gap-4 px-6 md:px-8 py-3 md:py-4 rounded-full border border-white/20 hover:bg-white hover:text-black transition-all duration-500 w-full md:w-fit disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <span className="text-[10px] md:text-xs font-medium tracking-[0.2em]">SEND MESSAGE</span>
+                  <span className="text-[10px] md:text-xs font-medium tracking-[0.2em]">
+                    {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
+                  </span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
               </div>

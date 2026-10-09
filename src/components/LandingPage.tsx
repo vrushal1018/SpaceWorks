@@ -51,6 +51,15 @@ export default function LandingPage({ onNext }: LandingPageProps) {
         loop
         muted
         playsInline
+        preload="auto"
+        onTimeUpdate={(e) => {
+          const video = e.currentTarget;
+          // Jump to start right before the video ends to avoid the browser pause
+          if (video.duration && video.currentTime >= video.duration - 0.2) {
+            video.currentTime = 0;
+            video.play();
+          }
+        }}
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
         <source src="/spaceworksmainvideo.mp4" type="video/mp4" />
@@ -90,7 +99,7 @@ export default function LandingPage({ onNext }: LandingPageProps) {
 
         {/* CENTER TEXT */}
         <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center pointer-events-none mt-1">
-          <span className="text-xs md:text-sm text-white/90 font-medium tracking-[0.25em] uppercase whitespace-nowrap">An Ina Tech FM Vertical</span>
+          <span className="text-xs md:text-sm text-white/90 font-medium tracking-[0.25em] normal-case whitespace-nowrap">An Ina TechFM Vertical</span>
         </div>
 
         <div className="flex items-center">
