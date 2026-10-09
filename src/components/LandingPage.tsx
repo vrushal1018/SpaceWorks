@@ -174,10 +174,10 @@ export default function LandingPage({ onNext }: LandingPageProps) {
       </main>
 
       {/* Floating Action Buttons Container */}
-      <div className="absolute bottom-4 md:bottom-10 left-0 w-full px-6 md:px-10 flex justify-between items-end z-50 pointer-events-none">
+      <div className="absolute bottom-4 md:bottom-10 left-0 w-full flex justify-center items-end z-50 pointer-events-none">
 
         {/* Down Arrow to proceed (Bottom Center) */}
-        <div className="flex-1 flex justify-center pointer-events-auto pl-[40%] md:pl-0">
+        <div className="pointer-events-auto">
           <button
             onClick={onNext}
             className="w-8 h-8 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center hover:bg-white hover:text-black transition-all animate-bounce group bg-black/20 backdrop-blur-sm"
@@ -185,16 +185,6 @@ export default function LandingPage({ onNext }: LandingPageProps) {
             <ArrowDown className="w-3 h-3 md:w-5 md:h-5 group-hover:translate-y-1 transition-transform" />
           </button>
         </div>
-
-        {/* Right Arrow Controls (Bottom Right) */}
-        <motion.div variants={fadeScaleUp} initial="hidden" animate="visible" className="flex gap-2 md:gap-4 pointer-events-auto">
-          <button className="w-8 h-8 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center hover:bg-white hover:text-black transition-all bg-black/20 backdrop-blur-sm">
-            <ArrowLeft className="w-3 h-3 md:w-4 md:h-4" />
-          </button>
-          <button className="w-8 h-8 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center hover:bg-white hover:text-black transition-all bg-black/20 backdrop-blur-sm">
-            <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
-          </button>
-        </motion.div>
       </div>
 
     </motion.div>
