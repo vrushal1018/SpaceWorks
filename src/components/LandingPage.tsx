@@ -1,3 +1,6 @@
+"use client";
+
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowDown } from "lucide-react";
@@ -43,11 +46,11 @@ export default function LandingPage({ onNext }: LandingPageProps) {
       className="relative min-h-screen bg-[#878787] text-white overflow-hidden font-sans"
     >
       {/* Subtle Background Glow / Ambient Lighting */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-amber-700/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-amber-500/10 rounded-full blur-[90px] md:blur-[120px] pointer-events-none z-0" />
+      <div className="absolute bottom-0 right-1/4 w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-amber-700/10 rounded-full blur-[80px] md:blur-[100px] pointer-events-none z-0" />
 
-      {/* Faint Vertical Grid Lines */}
-      <div className="absolute inset-0 flex justify-evenly pointer-events-none opacity-10">
+      {/* Faint Vertical Grid Lines to match reference image */}
+      <div className="absolute inset-0 flex justify-evenly pointer-events-none opacity-10 z-0">
         <div className="w-[1px] h-full bg-white" />
         <div className="w-[1px] h-full bg-white" />
         <div className="w-[1px] h-full bg-white" />
@@ -58,17 +61,25 @@ export default function LandingPage({ onNext }: LandingPageProps) {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.2 }}
-        className="relative z-20 flex items-center justify-between px-10 py-8 text-xs uppercase tracking-widest border-b border-white/5"
+        className="relative z-50 flex items-center justify-between px-6 md:px-10 py-6 md:py-8 text-[10px] md:text-xs uppercase tracking-widest border-b border-white/5"
       >
         <div className="flex items-center">
-          <Image
-            src="/Ina Tech FM Logo .png"
-            alt="Ina Tech FM Logo"
-            width={180}
-            height={60}
-            className="object-contain h-12 w-auto"
-            priority
-          />
+          <a
+            href="https://inatechfmglobal.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block hover:opacity-80 transition-opacity"
+          >
+            <Image
+              src="/Ina Tech FM Logo .png"
+              alt="Ina Tech FM Logo"
+              width={180}
+              height={60}
+              className="object-contain h-8 md:h-12 w-auto"
+              priority
+            />
+          </a>
+          <span className="absolute bottom-1 md:bottom-2 left-6 md:left-10 ml-1 text-[8px] md:text-[10px] text-white/50 tracking-[0.2em] uppercase">An Ina Tech FM Vertical</span>
         </div>
 
         <button
@@ -79,71 +90,63 @@ export default function LandingPage({ onNext }: LandingPageProps) {
         </button>
       </motion.nav>
 
-      {/* Down Arrow to proceed */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-50">
-        <button
-          onClick={onNext}
-          className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all animate-bounce group"
-        >
-          <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
-        </button>
-      </div>
+      {/* Main Content Area - Fully Absolute Positioned */}
+      <main className="relative w-full h-[calc(100vh-80px)] md:h-[calc(100vh-100px)] pointer-events-none">
 
-      {/* Main Content */}
-      <main className="relative z-10 max-w-[1600px] mx-auto px-10 pt-20 h-[calc(100vh-100px)] flex flex-col justify-between">
-
-        {/* Top Text Elements */}
-        <div className="flex justify-between items-start w-full relative z-20">
-          <motion.div
-            variants={fadeScaleUp}
-            initial="hidden"
-            animate="visible"
-            className="text-white/60 text-sm max-w-[250px] leading-relaxed"
-          >
-            <p className="text-white font-medium tracking-widest text-xs mb-1">DESIGN-LED THINKING</p>
-            <p>Spaces shaped around business, people and purpose.</p>
-          </motion.div>
-        </div>
-
-        {/* Hero Logo */}
+        {/* TOP LEFT TEXT */}
         <motion.div
           variants={fadeScaleUp}
           initial="hidden"
           animate="visible"
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center pointer-events-none z-30"
+          className="absolute top-[8%] md:top-[20%] left-6 md:left-10 z-30 pointer-events-auto"
         >
-          <Image
-            src="/SpaceWorks Logo White 2.png"
-            alt="SpaceWorks Logo"
-            width={500}
-            height={200}
-            className="object-contain w-1/2 max-w-[400px]"
-            priority
-          />
+          {/* Changed from text-white/60 to text-white/90 for brightness */}
+          <div className="text-white/90 text-[10px] md:text-sm max-w-[150px] md:max-w-[220px] leading-relaxed">
+            <p className="text-white font-medium tracking-widest text-[9px] md:text-xs mb-1 md:mb-2">DESIGN-LED THINKING</p>
+            <p>Spaces shaped around business, people and purpose.</p>
+          </div>
         </motion.div>
 
-        {/* Right Side Text */}
+        {/* RIGHT SIDE TEXT */}
         <motion.div
           variants={fadeScaleUp}
           initial="hidden"
           animate="visible"
-          className="absolute top-[40%] right-10 text-right z-20"
+          className="absolute top-[62%] md:top-[55%] right-6 md:right-10 text-right z-30 pointer-events-auto drop-shadow-md"
         >
-          <div className="text-white/60 text-sm max-w-[250px] leading-relaxed ml-auto">
-            <p className="text-white font-medium tracking-widest text-xs mb-1">CIVIL WORKS</p>
+          {/* Changed from text-white/60 to text-white/90 for brightness */}
+          <div className="text-white/90 text-[10px] md:text-sm max-w-[140px] md:max-w-[220px] leading-relaxed ml-auto">
+            <p className="text-white font-medium tracking-widest text-[9px] md:text-xs mb-1 md:mb-2">CIVIL WORKS</p>
             <p>New construction, modifications and structural works with quality and compliance.</p>
           </div>
         </motion.div>
 
-        {/* Images Grid & Controls Bottom Area */}
+        {/* CENTER LOGO (Floating high z-index to overlap image) */}
+        <motion.div
+          variants={fadeScaleUp}
+          initial="hidden"
+          animate="visible"
+          className="absolute top-[20%] md:top-[15%] left-1/2 -translate-x-1/2 w-full flex items-center justify-center z-40 pointer-events-none"
+        >
+          <Image
+            src="/SpaceWorks Logo White 2.png"
+            alt="SpaceWorks Logo"
+            width={600}
+            height={250}
+            className="object-contain w-[80%] md:w-[600px]"
+            priority
+          />
+        </motion.div>
+
+        {/* BOTTOM IMAGES GRID (Anchored to bottom) */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="relative grid grid-cols-12 gap-6 h-[45vh] items-end pb-10"
+          className="absolute bottom-16 md:bottom-0 left-0 w-full px-4 md:px-0 grid grid-cols-4 md:grid-cols-12 items-end z-20 pointer-events-auto"
         >
           {/* Bottom Left Small Image */}
-          <motion.div variants={slideUp} className="col-span-3 h-32 relative group overflow-hidden rounded-sm">
+          <motion.div variants={slideUp} className="col-span-1 md:col-span-3 h-[10vh] md:h-[20vh] relative group overflow-hidden rounded-sm md:rounded-none">
             <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500 z-10" />
             <img
               src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop"
@@ -153,44 +156,62 @@ export default function LandingPage({ onNext }: LandingPageProps) {
           </motion.div>
 
           {/* Middle Left Taller Image (Coming Soon) */}
-          <motion.div variants={slideUp} className="col-span-3 h-48 relative group overflow-hidden rounded-sm border border-white/5 bg-white/5">
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-500 z-10 flex items-center justify-center">
+          <motion.div variants={slideUp} className="col-span-1 md:col-span-3 h-[18vh] md:h-[35vh] relative group overflow-hidden rounded-sm md:rounded-none bg-[#5A5957] border-l border-r border-white/10 md:border-none">
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500 z-10 flex items-center justify-center">
               <motion.span
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="text-white tracking-widest text-lg uppercase font-semibold drop-shadow-md"
+                className="text-white tracking-widest text-[8px] md:text-sm uppercase font-semibold drop-shadow-md text-center px-2"
               >
-                Coming Soon
+                Website Under Development
               </motion.span>
             </div>
           </motion.div>
 
           {/* Main Center Tall Image */}
-          <motion.div variants={slideUp} className="col-span-4 h-[60vh] relative -mt-32 group overflow-hidden rounded-sm">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
+          <motion.div variants={slideUp} className="col-span-2 md:col-span-5 h-[35vh] md:h-[65vh] relative group overflow-hidden rounded-sm md:rounded-none bg-black">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
             <img
               src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop"
               alt="Tall window living room"
-              className="object-cover w-full h-full scale-105 group-hover:scale-100 transition-transform duration-700"
+              className="object-cover w-full h-full scale-105 group-hover:scale-100 transition-transform duration-700 opacity-90"
             />
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 text-center w-full">
-              <p className="text-sm tracking-[0.2em] uppercase font-medium">Auburn</p>
-              <p className="text-xs text-white/50 tracking-widest uppercase mt-1">Residence</p>
+            <div className="absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 z-20 text-center w-full">
+              <p className="text-[10px] md:text-sm tracking-[0.2em] uppercase font-semibold">Auburn</p>
+              <p className="text-[8px] md:text-xs text-white/50 tracking-widest uppercase mt-1">Residence</p>
             </div>
           </motion.div>
 
-          {/* Bottom Right Controls */}
-          <motion.div variants={fadeScaleUp} className="col-span-2 flex justify-end gap-4 h-12 mb-4">
-            <button className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all">
-              <ArrowLeft className="w-4 h-4" />
-            </button>
-            <button className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all">
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </motion.div>
+          {/* Empty space in grid to push the image to the left, mimicking the reference */}
+          <div className="hidden md:block md:col-span-1"></div>
         </motion.div>
 
       </main>
+
+      {/* Floating Action Buttons Container */}
+      <div className="absolute bottom-4 md:bottom-10 left-0 w-full px-6 md:px-10 flex justify-between items-end z-50 pointer-events-none">
+
+        {/* Down Arrow to proceed (Bottom Center) */}
+        <div className="flex-1 flex justify-center pointer-events-auto pl-[40%] md:pl-0">
+          <button
+            onClick={onNext}
+            className="w-8 h-8 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center hover:bg-white hover:text-black transition-all animate-bounce group bg-black/20 backdrop-blur-sm"
+          >
+            <ArrowDown className="w-3 h-3 md:w-5 md:h-5 group-hover:translate-y-1 transition-transform" />
+          </button>
+        </div>
+
+        {/* Right Arrow Controls (Bottom Right) */}
+        <motion.div variants={fadeScaleUp} initial="hidden" animate="visible" className="flex gap-2 md:gap-4 pointer-events-auto">
+          <button className="w-8 h-8 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center hover:bg-white hover:text-black transition-all bg-black/20 backdrop-blur-sm">
+            <ArrowLeft className="w-3 h-3 md:w-4 md:h-4" />
+          </button>
+          <button className="w-8 h-8 md:w-12 md:h-12 rounded-full border border-white/30 flex items-center justify-center hover:bg-white hover:text-black transition-all bg-black/20 backdrop-blur-sm">
+            <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
+          </button>
+        </motion.div>
+      </div>
+
     </motion.div>
   );
 }

@@ -60,15 +60,23 @@ export default function ContactPage({ onBack }: ContactPageProps) {
         transition={{ duration: 1, delay: 0.2 }}
         className="relative z-20 flex items-center justify-between px-6 md:px-10 py-6 md:py-8 text-[10px] md:text-xs uppercase tracking-widest border-b border-white/5"
       >
-        <div className="flex items-center cursor-pointer" onClick={onBack}>
-          <Image
-            src="/Ina Tech FM Logo .png"
-            alt="Ina Tech FM Logo"
-            width={180}
-            height={60}
-            className="object-contain h-8 md:h-12 w-auto"
-            priority
-          />
+        <div className="flex items-center">
+          <a
+            href="https://inatechfmglobal.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block hover:opacity-80 transition-opacity"
+          >
+            <Image
+              src="/Ina Tech FM Logo .png"
+              alt="Ina Tech FM Logo"
+              width={180}
+              height={60}
+              className="object-contain h-8 md:h-12 w-auto"
+              priority
+            />
+          </a>
+          <span className="absolute bottom-1 md:bottom-2 left-6 md:left-10 ml-1 text-[8px] md:text-[10px] text-white/50 tracking-[0.2em] uppercase">An Ina Tech FM Vertical</span>
         </div>
 
         <a
