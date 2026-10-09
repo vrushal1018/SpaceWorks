@@ -35,7 +35,7 @@ export default function LandingPage({ onNext }: LandingPageProps) {
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
@@ -81,7 +81,7 @@ export default function LandingPage({ onNext }: LandingPageProps) {
 
       {/* Down Arrow to proceed */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-50">
-        <button 
+        <button
           onClick={onNext}
           className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all animate-bounce group"
         >
